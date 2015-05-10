@@ -1,7 +1,11 @@
 # sohu_crawled
 m.sohu.com爬虫
-# sohu_crawled
-m.sohu.com爬虫
+sohu.py为爬虫执行文件
+crontab为定时模块的使用
+
+<h3>执行方法</h3>
+python sohu.py 
+注意如果用定时模块启动默认是在后台运行
 思路
 
 分3个步骤实现
