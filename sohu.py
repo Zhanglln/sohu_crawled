@@ -5,11 +5,9 @@ import logging
 import time
 import urllib2
 from urlparse import urlparse, urljoin
-from httplib import HTTP
 from bs4 import BeautifulSoup
 from Queue import Queue
 from threading import Thread, RLock
-from random import choice
 
 # 已访问的网址,避免重复
 visited = []
