@@ -4,20 +4,10 @@ import os
 import time
 import logging
 import urllib2
-<<<<<<< HEAD
-
 from Queue import Queue
-from httplib import HTTP
-from random import choice
-=======
 from urlparse import urlparse, urljoin
->>>>>>> 9a7df9ec3d6f9cd70ec9edaf8ea72746083b2d8b
 from bs4 import BeautifulSoup
 from threading import Thread, RLock
-<<<<<<< HEAD
-from urlparse import urlparse, urljoin
-=======
->>>>>>> 9a7df9ec3d6f9cd70ec9edaf8ea72746083b2d8b
 
 # 已访问的网址,避免重复
 visited = []
@@ -40,26 +30,14 @@ logging.basicConfig(filename = os.path.join(os.getcwd(), time.strftime('%Y-%m-%d
         level = logging.WARN, filemode = 'a', format = '错误时间：%(asctime)s  %(message)s')
 
 # 不进行检测的url，包括：普版、彩版、触版、PC.
-<<<<<<< HEAD
-not_check = [None, '#', '/', '#top' 
-            '?v=2&_once_=sohu_version_2', 
-            'http://m.sohu.com/towww', 
+not_check = [None, '#', '/', '#top'
+            '?v=2&_once_=sohu_version_2',
+            'http://m.sohu.com/towww',
             'http://m.sohu.com/towww?_smuid=Fp2BA2eH7zvswZMa9vrD2U&amp;v=2',
-            '?v=1&amp;_once_=sohu_version_1&amp;_smuid=Fp2BA2eH7zvswZMa9vrD2U', 
+            '?v=1&amp;_once_=sohu_version_1&amp;_smuid=Fp2BA2eH7zvswZMa9vrD2U',
             '?v=3&amp;_once_=sohu_version_3&amp;_smuid=Fp2BA2eH7zvswZMa9vrD2U',
             '?v=3&amp;_once_=000025_v2tov3&amp;_smuid=Fp2BA2eH7zvswZMa9vrD2U',
         ]
-=======
-not_check = [None, '#', '/', '?v=2&_once_=sohu_version_2', '#top',
-                'http://m.sohu.com/towww', 
-                'http://m.sohu.com/towww?_smuid=Fp2BA2eH7zvswZMa9vrD2U&amp;v=2', 
-                '?v=1&amp;_once_=sohu_version_1&amp;_smuid=Fp2BA2eH7zvswZMa9vrD2U', 
-                '?v=3&amp;_once_=sohu_version_3&amp;_smuid=Fp2BA2eH7zvswZMa9vrD2U',
-                
-                '?v=3&amp;_once_=000025_v2tov3&amp;_smuid=Fp2BA2eH7zvswZMa9vrD2U',
-                ]
->>>>>>> 9a7df9ec3d6f9cd70ec9edaf8ea72746083b2d8b
-
 # 线程类
 class CheckThread(Thread):
     def __init__(self, qe, no):
@@ -140,12 +118,10 @@ def get_all_links(url):
 # 获得完整的url，把短链接前加上 http://m.sohu.com
 def get_whole_url(url):
     uhost = urlparse(url)
-    
     if uhost.netloc == "":
         url = urljoin(DOMAIN, url)
 
     return url.encode('utf-8')
-
 
 # 检查链接的有效性并将错误信息写到日志
 def get_url_msg(url):
