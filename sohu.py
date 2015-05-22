@@ -66,7 +66,6 @@ class CheckThread(Thread):
     def work(self, url, no):
         check_page_links(url, no)
 
-
 def check_page_links(url, no):
     global checked_num
     print '第%d个进程：' % no
