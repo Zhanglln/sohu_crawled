@@ -11,7 +11,7 @@ import urllib2
 from Queue import Queue
 from urlparse import urlparse, urljoin
 from bs4 import BeautifulSoup
-from threading import Thread, rlock
+from threading import Thread,RLock
 
 # 已访问的网址,避免重复
 visited = []
@@ -27,7 +27,7 @@ works_num = 5
 domain = 'http://m.sohu.com'
 
 # 线程锁
-mylock = rlock()
+mylock = RLock()
 
 # 初始化log
 logging.basicConfig(filename = os.path.join(os.getcwd(), time.strftime('%Y-%m-%d-') + 'log.txt'),
