@@ -1,15 +1,16 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import os
-import logging
 import time
+import logging
 import urllib2
-from urlparse import urlparse, urljoin
-from httplib import HTTP
-from bs4 import BeautifulSoup
+
 from Queue import Queue
-from threading import Thread, RLock
+from httplib import HTTP
 from random import choice
+from bs4 import BeautifulSoup
+from threading import Thread, RLock
+from urlparse import urlparse, urljoin
 
 # 已访问的网址,避免重复
 visited = []
@@ -32,12 +33,14 @@ logging.basicConfig(filename = os.path.join(os.getcwd(), time.strftime('%Y-%m-%d
         level = logging.WARN, filemode = 'a', format = '错误时间：%(asctime)s  %(message)s')
 
 # 不进行检测的url，包括：普版、彩版、触版、PC.
-not_check = [None, '#', '/', '?v=2&_once_=sohu_version_2', 'http://m.sohu.com/towww', 'http://m.sohu.com/towww?_smuid=Fp2BA2eH7zvswZMa9vrD2U&amp;v=2', '#top',
-                '?v=1&amp;_once_=sohu_version_1&amp;_smuid=Fp2BA2eH7zvswZMa9vrD2U', 
-                '?v=3&amp;_once_=sohu_version_3&amp;_smuid=Fp2BA2eH7zvswZMa9vrD2U',
-                
-                '?v=3&amp;_once_=000025_v2tov3&amp;_smuid=Fp2BA2eH7zvswZMa9vrD2U',
-                ]
+not_check = [None, '#', '/', '#top' 
+            '?v=2&_once_=sohu_version_2', 
+            'http://m.sohu.com/towww', 
+            'http://m.sohu.com/towww?_smuid=Fp2BA2eH7zvswZMa9vrD2U&amp;v=2',
+            '?v=1&amp;_once_=sohu_version_1&amp;_smuid=Fp2BA2eH7zvswZMa9vrD2U', 
+            '?v=3&amp;_once_=sohu_version_3&amp;_smuid=Fp2BA2eH7zvswZMa9vrD2U',
+            '?v=3&amp;_once_=000025_v2tov3&amp;_smuid=Fp2BA2eH7zvswZMa9vrD2U',
+        ]
 
 # 线程类
 class CheckThread(Thread):
