@@ -1,5 +1,9 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+'''
+5.22 PEP8风格改动
+
+'''
 import os
 import time
 import logging
