@@ -4,13 +4,20 @@ import os
 import time
 import logging
 import urllib2
+<<<<<<< HEAD
 
 from Queue import Queue
 from httplib import HTTP
 from random import choice
+=======
+from urlparse import urlparse, urljoin
+>>>>>>> 9a7df9ec3d6f9cd70ec9edaf8ea72746083b2d8b
 from bs4 import BeautifulSoup
 from threading import Thread, RLock
+<<<<<<< HEAD
 from urlparse import urlparse, urljoin
+=======
+>>>>>>> 9a7df9ec3d6f9cd70ec9edaf8ea72746083b2d8b
 
 # 已访问的网址,避免重复
 visited = []
@@ -33,6 +40,7 @@ logging.basicConfig(filename = os.path.join(os.getcwd(), time.strftime('%Y-%m-%d
         level = logging.WARN, filemode = 'a', format = '错误时间：%(asctime)s  %(message)s')
 
 # 不进行检测的url，包括：普版、彩版、触版、PC.
+<<<<<<< HEAD
 not_check = [None, '#', '/', '#top' 
             '?v=2&_once_=sohu_version_2', 
             'http://m.sohu.com/towww', 
@@ -41,6 +49,16 @@ not_check = [None, '#', '/', '#top'
             '?v=3&amp;_once_=sohu_version_3&amp;_smuid=Fp2BA2eH7zvswZMa9vrD2U',
             '?v=3&amp;_once_=000025_v2tov3&amp;_smuid=Fp2BA2eH7zvswZMa9vrD2U',
         ]
+=======
+not_check = [None, '#', '/', '?v=2&_once_=sohu_version_2', '#top',
+                'http://m.sohu.com/towww', 
+                'http://m.sohu.com/towww?_smuid=Fp2BA2eH7zvswZMa9vrD2U&amp;v=2', 
+                '?v=1&amp;_once_=sohu_version_1&amp;_smuid=Fp2BA2eH7zvswZMa9vrD2U', 
+                '?v=3&amp;_once_=sohu_version_3&amp;_smuid=Fp2BA2eH7zvswZMa9vrD2U',
+                
+                '?v=3&amp;_once_=000025_v2tov3&amp;_smuid=Fp2BA2eH7zvswZMa9vrD2U',
+                ]
+>>>>>>> 9a7df9ec3d6f9cd70ec9edaf8ea72746083b2d8b
 
 # 线程类
 class CheckThread(Thread):
@@ -109,7 +127,7 @@ def check_page_links(url, no):
                 try:
                     check_page_links(whole_url, no)
                 except Exception, e:
-                    write_log('error', whole_url , str(e) )
+                    write_log('error', whole_url, str(e))
 
 
 # 读取页面链接
@@ -136,7 +154,7 @@ def get_url_msg(url):
 'User-Agent':'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.65 Safari/537.36' ,
 'Referer':'http://m.sohu.com'
 }
-    req = urllib2.Request(url , headers = headers)
+    req = urllib2.Request(url, headers = headers)
 
     print '\nURL: %s\n' % url
 
@@ -151,12 +169,12 @@ def get_url_msg(url):
             print 'Error Code: %s' % code
             print '\n' + '#' * 50 + '\n'
             # 写入日志
-            write_log('warning', url , code )
+            write_log('warning', url, code )
     except Exception, e:
         print str(e)
         print '\n' + '*' * 50 + '\n'
         # 写入日志
-        write_log('error', url , str(e))
+        write_log('error', url, str(e))
 
     # 防止短时间内链接过于频繁
     time.sleep(1)
@@ -164,7 +182,7 @@ def get_url_msg(url):
 
 
 # 写入日志
-def write_log(log_type, url , message):
+def write_log(log_type, url, message):
     logger = '\n错误链接：%s\n错误信息：%s\n%s\n' % (url, message, '-'*50)
     if log_type == 'error':
         logging.error(logger)
